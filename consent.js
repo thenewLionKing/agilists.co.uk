@@ -15,7 +15,7 @@
 (function () {
   'use strict';
 
-  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';        // TODO: set your GA4 Measurement ID
+  var GA_MEASUREMENT_ID = 'G-W4TCJ4GLNJ';        // GA4 Measurement ID
   var STORAGE_KEY = 'agilists_cookie_consent';   // 'accepted' | 'rejected'
 
   function hasRealGaId() {
