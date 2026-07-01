@@ -1,0 +1,101 @@
+/* Shared styles for Agilists legal pages (privacy, terms, cookies, modern-slavery). */
+:root {
+  --navy: #0d1b4b;
+  --navy2: #162260;
+  --blue: #2451ff;
+  --blue-lt: #4f72ff;
+  --sky: #e8eeff;
+  --white: #ffffff;
+  --off: #f5f7ff;
+  --text: #1a1f3a;
+  --body: #33384f;
+  --muted: #6b7280;
+  --border: #dde3f5;
+  --radius: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+
+/* Top bar */
+.legal-nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 6%;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.legal-nav .wordmark {
+  font-weight: 600; letter-spacing: 0.18em; font-size: 0.85rem;
+  color: var(--navy); display: inline-flex; gap: 0.4rem; align-items: baseline;
+}
+.legal-nav .wordmark:hover { text-decoration: none; }
+.legal-nav .wordmark span { font-size: 0.6rem; letter-spacing: 0.14em; color: var(--blue); }
+.legal-nav .back { font-size: 0.85rem; font-weight: 500; }
+
+/* Header band */
+.legal-head {
+  background: radial-gradient(900px 400px at 80% -20%, var(--navy2), transparent 60%),
+              linear-gradient(160deg, var(--navy), var(--navy2));
+  color: var(--white);
+  padding: 3.5rem 6% 2.5rem;
+}
+.legal-head .wrap { max-width: 760px; margin: 0 auto; }
+.legal-head .eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--blue-lt); margin-bottom: 0.6rem;
+}
+.legal-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15;
+}
+.legal-head .updated { margin-top: 0.85rem; font-size: 0.85rem; color: var(--sky); }
+
+/* Content */
+main.legal { max-width: 760px; margin: 0 auto; padding: 3rem 6% 4rem; }
+main.legal > p:first-of-type { font-size: 1.08rem; color: var(--text); }
+main.legal h2 {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.4rem;
+  color: var(--navy); margin: 2.4rem 0 0.8rem;
+}
+main.legal h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text); }
+main.legal p, main.legal li { color: var(--body); font-size: 1rem; }
+main.legal p { margin-bottom: 1rem; }
+main.legal ul, main.legal ol { margin: 0 0 1rem 1.35rem; }
+main.legal li { margin-bottom: 0.45rem; }
+main.legal strong { color: var(--text); }
+
+.callout {
+  background: var(--off); border: 1px solid var(--border); border-left: 3px solid var(--blue);
+  border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1.3rem 0; font-size: 0.95rem;
+}
+.placeholder {
+  background: #fff3cd; border: 1px solid #ffe69c; border-radius: 4px;
+  padding: 0 0.35rem; font-weight: 600; color: #7a5b00; overflow-wrap: anywhere;
+}
+.table-wrap { overflow-x: auto; margin: 1.2rem 0; -webkit-overflow-scrolling: touch; }
+table.legal-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; }
+.table-wrap table.legal-table { margin: 0; min-width: 480px; }
+table.legal-table th, table.legal-table td {
+  border: 1px solid var(--border); padding: 0.6rem 0.7rem; text-align: left; vertical-align: top;
+}
+table.legal-table th { background: var(--off); font-weight: 600; }
+
+/* Footer */
+.legal-foot { border-top: 1px solid var(--border); padding: 2rem 6%; background: var(--off); }
+.legal-foot .wrap {
+  max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap;
+  gap: 0.6rem 1.2rem; align-items: center; justify-content: space-between;
+}
+.legal-foot .links a { font-size: 0.85rem; margin-right: 1rem; color: var(--muted); }
+.legal-foot .links a:hover { color: var(--blue); }
+.legal-foot .copy { font-size: 0.8rem; color: var(--muted); }
