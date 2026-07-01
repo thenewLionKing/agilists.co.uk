@@ -354,7 +354,7 @@
     .approach-top h2 { color: white; }
     .approach-top .section-label { color: #a5b8ff; }
     .approach-top .section-label::before { background: #a5b8ff; }
-    .approach-top-right { max-width: 340px; color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.75; }
+    .approach-top-right { max-width: 340px; color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.75; }
     .approach-layout {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
       border: 1px solid rgba(255,255,255,0.07);
@@ -368,8 +368,8 @@
       cursor: pointer; position: relative; transition: background 0.3s;
     }
     .approach-step-tab:last-child { border-bottom: none; }
-    .approach-step-tab:hover { background: rgba(255,255,255,0.03); }
-    .approach-step-tab.active { background: rgba(36,81,255,0.12); }
+    .approach-step-tab:hover { background: rgba(255,255,255,0.05); }
+    .approach-step-tab.active { background: rgba(36,81,255,0.18); }
     .approach-step-tab::before {
       content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
       background: var(--blue); transform: scaleY(0); transform-origin: top;
@@ -378,37 +378,45 @@
     .approach-step-tab.active::before { transform: scaleY(1); }
     .step-tab-num {
       font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900;
-      color: rgba(36,81,255,0.3); line-height: 1; min-width: 2.5rem; transition: color 0.3s;
+      color: rgba(255,255,255,0.52); line-height: 1; min-width: 2.5rem; transition: color 0.3s;
     }
-    .approach-step-tab.active .step-tab-num { color: var(--blue); }
+    .approach-step-tab.active .step-tab-num { color: #8ea3ff; }
     .step-tab-title {
       font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
-      color: rgba(255,255,255,0.5); margin-bottom: 0.3rem; transition: color 0.3s;
+      color: rgba(255,255,255,0.82); margin-bottom: 0.3rem; transition: color 0.3s;
     }
     .approach-step-tab.active .step-tab-title { color: white; }
-    .step-tab-summary { font-size: 0.82rem; color: rgba(255,255,255,0.25); line-height: 1.5; transition: color 0.3s; }
-    .approach-step-tab.active .step-tab-summary { color: rgba(255,255,255,0.45); }
+    .step-tab-summary { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; transition: color 0.3s; }
+    .approach-step-tab.active .step-tab-summary { color: rgba(255,255,255,0.85); }
     .step-tab-arrow {
-      margin-left: auto; color: rgba(255,255,255,0.1); font-size: 1.1rem;
+      margin-left: auto; color: rgba(255,255,255,0.45); font-size: 1.1rem;
       align-self: center; transition: color 0.3s, transform 0.3s;
     }
-    .approach-step-tab.active .step-tab-arrow { color: var(--blue); transform: translateX(3px); }
+    .approach-step-tab.active .step-tab-arrow { color: #8ea3ff; transform: translateX(3px); }
     .approach-detail {
       padding: 3.5rem; display: flex; flex-direction: column;
       justify-content: space-between; min-height: 460px;
       background: rgba(255,255,255,0.02);
     }
-    .detail-panel { display: none; animation: detailIn 0.4s ease both; }
+    .detail-panel { display: none; }
     .detail-panel.active { display: flex; flex-direction: column; height: 100%; }
+    /* Staggered reveal of the panel's blocks on each tab switch (re-triggers via the .active class). */
+    .detail-panel.active > * { animation: detailIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+    .detail-panel.active > *:nth-child(1) { animation-delay: 0.04s; }
+    .detail-panel.active > *:nth-child(2) { animation-delay: 0.12s; }
+    .detail-panel.active > *:nth-child(3) { animation-delay: 0.20s; }
     @keyframes detailIn {
-      from { opacity: 0; transform: translateX(16px); }
-      to   { opacity: 1; transform: translateX(0); }
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .detail-panel.active > * { animation: none; opacity: 1; }
     }
     .detail-phase {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--blue); background: rgba(36,81,255,0.12);
-      border: 1px solid rgba(36,81,255,0.25);
+      color: #a5b8ff; background: rgba(36,81,255,0.15);
+      border: 1px solid rgba(36,81,255,0.4);
       padding: 0.35rem 0.85rem; border-radius: 999px;
       margin-bottom: 1.75rem; width: fit-content;
     }
@@ -416,16 +424,16 @@
       font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700;
       color: white; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.25rem;
     }
-    .detail-body { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.85; margin-bottom: 2rem; }
+    .detail-body { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.85; margin-bottom: 2rem; }
     .detail-deliverables { margin-top: auto; }
     .detail-deliverables-label {
       font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.25); margin-bottom: 0.75rem;
+      color: rgba(255,255,255,0.55); margin-bottom: 0.75rem;
     }
     .deliverable-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .d-tag {
-      font-size: 0.78rem; color: rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.78rem; color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
       padding: 0.3rem 0.8rem; border-radius: 4px;
     }
     .detail-progress {
@@ -438,7 +446,7 @@
       height: 100%; background: linear-gradient(90deg, var(--blue), #6b8fff);
       border-radius: 99px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
     }
-    .progress-label { font-size: 0.75rem; color: rgba(255,255,255,0.25); white-space: nowrap; }
+    .progress-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); white-space: nowrap; }
     @media (max-width: 900px) {
       .approach-layout { grid-template-columns: 1fr; }
       .approach-steps-list { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
