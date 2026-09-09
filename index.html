@@ -211,66 +211,34 @@
     }
     .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.06); transform: translateY(-2px); }
 
-    /* Stats card */
-    .hero-stats-card {
+    /* Contrast card */
+    .hero-contrast-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 12px;
-      padding: 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden;
       backdrop-filter: blur(10px);
     }
-    .stats-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    .contrast-col { padding: 2rem 1.75rem; }
+    .contrast-col + .contrast-col { border-left: 1px solid rgba(255,255,255,0.1); background: rgba(36,81,255,0.14); }
+    .contrast-head {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #a5b8ff; font-weight: 600; margin-bottom: 1.25rem;
     }
-    .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
+    .contrast-head-dim { color: rgba(255,255,255,0.5); }
+    .contrast-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+    .contrast-list li {
+      font-size: 0.85rem; line-height: 1.5; color: rgba(255,255,255,0.6);
+      padding-left: 1.4rem; position: relative;
     }
-    .stat-num sup { font-size: 1.4rem; color: #6b8fff; }
-    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.35rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .stat-divider {
-      grid-column: 1 / -1;
-      height: 1px; background: rgba(255,255,255,0.08);
+    .contrast-list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 12px; height: 2px; background: rgba(255,255,255,0.3); }
+    .contrast-list-on li { color: rgba(255,255,255,0.92); }
+    .contrast-list-on li::before {
+      width: 6px; height: 6px; border-radius: 50%; top: 0.45em; left: 3px;
+      background: #6b8fff;
     }
-    .hero-card-badge {
-      display: flex; align-items: center; gap: 0.75rem;
-      margin-top: 2rem; padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .badge-icon {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--blue); display: grid; place-items: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .badge-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
-    .badge-text strong { color: white; display: block; font-size: 0.88rem; }
-
-    /* TICKER */
-    .ticker-bar {
-      background: var(--navy2);
-      padding: 1rem 0;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .ticker-track {
-      display: flex; gap: 4rem;
-      animation: ticker 25s linear infinite;
-      white-space: nowrap;
-    }
-    .ticker-item {
-      color: rgba(255,255,255,0.62);
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      flex-shrink: 0;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .ticker-item::before { content: '✦'; color: #2451ff; font-size: 0.6rem; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (max-width: 1100px) { .hero-contrast-card { grid-template-columns: 1fr; } .contrast-col + .contrast-col { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); } }
 
     /* INTRO */
     .intro-section {
@@ -460,7 +428,6 @@
         transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
       }
-      .ticker-track { animation: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
       .detail-panel.active > * { animation: none; opacity: 1; }
     }
@@ -524,6 +491,7 @@
       position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--blue), transparent);
     }
+    .about-quote-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #a5b8ff; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
     .about-quote {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -585,7 +553,7 @@
       font-size: 0.9rem; color: var(--text);
     }
     .contact-info-item:last-child { border-bottom: none; }
-    .ci-icon { font-size: 1.1rem; width: 36px; text-align: center; }
+    .ci-icon { width: 36px; display: grid; place-items: center; color: var(--blue); }
     form { display: grid; gap: 1rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     label { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.4rem; font-weight: 500; }
@@ -631,28 +599,6 @@
         linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
       background-size: 48px 48px; pointer-events: none;
     }
-    .footer-cta {
-      background: linear-gradient(135deg, var(--blue) 0%, var(--navy3) 100%);
-      padding: 3.5rem 6%; position: relative; z-index: 1;
-    }
-    .footer-cta-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-cta h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 700; color: white; letter-spacing: -0.02em; line-height: 1.2;
-    }
-    .footer-cta p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-top: 0.35rem; }
-    .footer-cta-btn {
-      background: white; color: var(--blue); padding: 0.85rem 2rem;
-      border-radius: var(--radius); text-decoration: none; font-weight: 600;
-      font-size: 0.9rem; white-space: nowrap; flex-shrink: 0;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .footer-cta-btn:hover { background: var(--sky); transform: translateY(-2px); }
     .footer-body { padding: 4rem 6% 2.5rem; position: relative; z-index: 1; }
     .footer-body-inner { max-width: 1200px; margin: 0 auto; }
     .footer-top {
@@ -702,7 +648,6 @@
     .footer-social-btn svg { width: 16px; height: 16px; }
     @media (max-width: 900px) {
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-      .footer-cta-inner { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 600px) {
       .footer-top { grid-template-columns: 1fr; }
@@ -732,7 +677,6 @@
       nav ul a { display: block; padding: 0.9rem 0.25rem; border-radius: var(--radius); }
       nav ul .nav-cta { text-align: center; margin-top: 0.5rem; }
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-stats-card { display: none; }
       .intro-inner { grid-template-columns: 1fr; gap: 2rem; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .approach-grid { grid-template-columns: 1fr 1fr; }
@@ -771,64 +715,34 @@
     <div>
       <span class="hero-tag">Software &amp; AI Consultancy · London</span>
       <h1>AI that reaches <em>production</em>.</h1>
-      <p class="hero-sub">Most enterprise AI stalls at the proof-of-concept. We're the software and AI consultancy that ships it — from pilot to production, with the engineering rigour and governance to keep it running.</p>
+      <p class="hero-sub">Most enterprise AI stalls at the proof-of-concept. We're the software and AI consultancy that ships it: from pilot to production, with the engineering rigour and governance to keep it running.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn-primary">Start a conversation ↗</a>
         <a href="#approach" class="btn-outline">How we work</a>
       </div>
     </div>
-    <div class="hero-stats-card">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-num">120<sup>+</sup></div>
-          <div class="stat-label">Teams Transformed</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">15<sup>+</sup></div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-num">98<sup>%</sup></div>
-          <div class="stat-label">Client Satisfaction</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">40<sup>+</sup></div>
-          <div class="stat-label">Expert Consultants</div>
-        </div>
+    <div class="hero-contrast-card">
+      <div class="contrast-col">
+        <div class="contrast-head contrast-head-dim">Why pilots stall</div>
+        <ul class="contrast-list">
+          <li>No evaluation, so nobody can say if it works</li>
+          <li>No guardrails, so risk and compliance say no</li>
+          <li>Built by a vendor, so nobody inside can run it</li>
+          <li>Demo-grade code that can't take real load</li>
+        </ul>
       </div>
-      <div class="hero-card-badge">
-        <div class="badge-icon">🏆</div>
-        <div class="badge-text">
-          <strong>Trusted by 50+ enterprises</strong>
-          across England and Wales
-        </div>
+      <div class="contrast-col">
+        <div class="contrast-head">How we ship</div>
+        <ul class="contrast-list contrast-list-on">
+          <li>Evaluation suites from week one</li>
+          <li>Governance and guardrails designed in, not bolted on</li>
+          <li>Your team paired with ours, ready to own it</li>
+          <li>Production engineering: observability, scale, cost</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
-
-<!-- TICKER -->
-<div class="ticker-bar">
-  <div class="ticker-track" id="ticker">
-    <span class="ticker-item">Artificial Intelligence</span>
-    <span class="ticker-item">Data Engineering</span>
-    <span class="ticker-item">Cloud Transformation</span>
-    <span class="ticker-item">Agile Coaching</span>
-    <span class="ticker-item">Software Development</span>
-    <span class="ticker-item">Testing & QA</span>
-    <span class="ticker-item">Design & Strategy</span>
-    <span class="ticker-item">Workday Solutions</span>
-    <span class="ticker-item">Artificial Intelligence</span>
-    <span class="ticker-item">Data Engineering</span>
-    <span class="ticker-item">Cloud Transformation</span>
-    <span class="ticker-item">Agile Coaching</span>
-    <span class="ticker-item">Software Development</span>
-    <span class="ticker-item">Testing & QA</span>
-    <span class="ticker-item">Design & Strategy</span>
-    <span class="ticker-item">Workday Solutions</span>
-  </div>
-</div>
 
 <!-- INTRO -->
 <div class="intro-section">
@@ -838,7 +752,7 @@
       <h2>A collective of practitioners who've <span>lived it</span>.</h2>
     </div>
     <div class="intro-right">
-      <p>Agilists is a London software and AI consultancy, built by AI practitioners, product managers, and delivery leads who've shipped real systems into production — and know why most never get there.</p>
+      <p>Agilists is a London software and AI consultancy, built by AI practitioners, product managers, and delivery leads who've shipped real systems into production and know why most never get there.</p>
       <p>We pair deep technical expertise with organisational empathy on every engagement, designing solutions that fit your culture, your people, and your strategy.</p>
     </div>
   </div>
@@ -850,9 +764,9 @@
     <div class="services-header reveal">
       <div>
         <div class="section-label">What We Do</div>
-        <h2>Our Services</h2>
+        <h2>AI first, with the engineering around it</h2>
       </div>
-      <p class="sub">Technology and transformation solutions tailored to your organisation's unique context and ambitions.</p>
+      <p class="sub">Production AI needs data, software, testing and adoption to succeed. We cover all of it.</p>
     </div>
     <div class="services-grid reveal">
 
@@ -896,7 +810,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
         <h3>Agile Coaching</h3>
-        <p>Embedded coaching for Scrum, Kanban, and SAFe teams. Agile transformation from team-level to enterprise scale — framework-agnostic, outcome-obsessed.</p>      </div>
+        <p>Embedded coaching for Scrum, Kanban, and SAFe teams. Agile transformation from team level to enterprise scale, framework-agnostic and judged on outcomes.</p>      </div>
 
     </div>
   </div>
@@ -911,7 +825,7 @@
         <div class="section-label">Our Methodology</div>
         <h2>The Path to Production</h2>
       </div>
-      <p class="approach-top-right">One proven methodology that takes every engagement from first principles to production — and leaves your team able to run it.</p>
+      <p class="approach-top-right">One proven methodology that takes every engagement from first principles to production, and leaves your team able to run it.</p>
     </div>
 
     <div class="approach-layout reveal">
@@ -1050,14 +964,8 @@
   <div class="about-inner">
     <div class="reveal">
       <div class="about-box">
-        <p class="about-quote">"Transformation is not a project. It's a <em>commitment</em> — to honest reflection, brave leadership, and building the capability to keep evolving."</p>
-        <div class="quote-author">
-          <div class="author-avatar">A</div>
-          <div>
-            <div class="author-name">Agilists Team</div>
-            <div class="author-title">Practitioners · Coaches · Partners</div>
-          </div>
-        </div>
+        <p class="about-quote">Transformation is not a project. It is a <em>commitment</em> to honest reflection, brave leadership, and building the capability to keep evolving.</p>
+        <div class="about-quote-label">What we believe</div>
       </div>
     </div>
     <div class="reveal">
@@ -1065,24 +973,24 @@
       <h2>Honest. Experienced. Committed.</h2>
       <div class="values-list">
         <div class="value-item">
-          <div class="value-dot">🎯</div>
+          <div class="value-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div>
             <h4>Outcome-Focused</h4>
-            <p>We measure success by your results — not by frameworks installed or certificates issued.</p>
+            <p>We measure success by your results, not by frameworks installed or certificates issued.</p>
           </div>
         </div>
         <div class="value-item">
-          <div class="value-dot">🧩</div>
+          <div class="value-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
           <div>
             <h4>Context-Driven</h4>
             <p>No cookie-cutter playbooks. Every engagement is designed around your people, culture, and strategy.</p>
           </div>
         </div>
         <div class="value-item">
-          <div class="value-dot">💬</div>
+          <div class="value-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
           <div>
-            <h4>Radically Transparent</h4>
-            <p>We tell you what you need to hear. Honest feedback — even when it's uncomfortable — drives real change.</p>
+            <h4>Candid</h4>
+            <p>We tell you what you need to hear. Honest feedback, even when it is uncomfortable, drives real change.</p>
           </div>
         </div>
       </div>
@@ -1098,9 +1006,9 @@
       <h2>Let's get it into production.</h2>
       <p>Tell us about your organisation and what you're trying to ship. We'll respond within one business day with a clear next step.</p>
       <div class="contact-info">
-        <div class="contact-info-item"><span class="ci-icon">📧</span> <a href="mailto:info@agilists.co.uk">info@agilists.co.uk</a></div>
-        <div class="contact-info-item"><span class="ci-icon">📍</span> London </div>
-        <div class="contact-info-item"><span class="ci-icon">⏱</span> Response within 1 business day</div>
+        <div class="contact-info-item"><span class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span> <a href="mailto:info@agilists.co.uk">info@agilists.co.uk</a></div>
+        <div class="contact-info-item"><span class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span> London </div>
+        <div class="contact-info-item"><span class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span> Response within 1 business day</div>
       </div>
     </div>
     <div class="reveal">
@@ -1152,17 +1060,6 @@
 
 <!-- FOOTER -->
 <footer>
-
-  <!-- CTA Band -->
-  <div class="footer-cta">
-    <div class="footer-cta-inner">
-      <div>
-        <h3>Ready to build something<br>that ships?</h3>
-        <p>Let's connect. We'll get back to you within one business day.</p>
-      </div>
-      <a href="#contact" class="footer-cta-btn">Let's Connect →</a>
-    </div>
-  </div>
 
   <!-- Main Footer Body -->
   <div class="footer-body">
